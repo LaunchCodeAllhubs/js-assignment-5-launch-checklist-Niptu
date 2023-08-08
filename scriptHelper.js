@@ -14,7 +14,7 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
                 </ol>
                 <img src="${imageUrl}" alt="Planet ${name} Image">
                 `;
-}
+};
 
 function validateInput(testInput) {
    if (testInput === ""){
@@ -29,8 +29,31 @@ function validateInput(testInput) {
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     if (validateInput(pilot) === "Empty" || validateInput(copilot) === "Empty" || validateInput(fuelLevel) === "Empty" || validateInput(cargoLevel) === "Empty") {
         alert ("All fields are required!");
-    }
+
+pilotStatus.innerHTML = `Pilot ${pilot} is ready for launch`;
+copilotStatus.innerHTML = `Co-pilot ${copilot} is ready for launch`;
+
+if (fuelLevel < 10000) {
+    faultyItems.style.visibility = "visible";
+    launchStatus.innerHTML = "Shuttle not ready for launch";
+    launchStatus.style.color = "red";
+    pilotStatus.innerHTML = "Pilot not ready";
+    copilotStatus.innerHTML = "Co-pilot not ready";
 }
+if (cargoLevel > 10000) {
+    faultyItems.style.visibility = "visible";
+    launchStatus.innerHTML = "Shuttle not ready for launch";
+    launchStatus.style.color = "#C7254E";
+    pilotStatus.innerHTML = "Pilot ready";
+    copilotStatus.innerHTML = "Co-pilot ready";
+}
+if (fuelLevel >= 10000 && cargoLevel <= 10000) {
+    faultyItems.style.visibility = "hidden";
+    launchStatus.innerHTML = "Shuttle is ready for launch";
+    launchStatus.style.color = "#419F6A";
+}
+    }
+};
 
 async function myFetch() {
  
@@ -41,12 +64,12 @@ async function myFetch() {
     });
 
     return planetsReturned;
-}
+};
 
 function pickPlanet(planets) {
     let randomIndex = Math.floor (Math.random()*planets.length);
     return planets[randomIndex];
-}
+};
 
 module.exports.addDestinationInfo = addDestinationInfo;
 module.exports.validateInput = validateInput;
