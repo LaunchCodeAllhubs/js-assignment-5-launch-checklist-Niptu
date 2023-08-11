@@ -27,6 +27,12 @@ function validateInput(testInput) {
 };
 
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
+    
+    let pilotStatus = document.getElementById("pilotStatus");
+    let copilotStatus = document.getElementById("copilotStatus");
+    let faultyItems = document.getElementById("faultyItems");
+    let launchStatus = this.document.getElementById("launchStatus");
+
     if (validateInput(pilot) === "Empty" || validateInput(copilot) === "Empty" || validateInput(fuelLevel) === "Empty" || validateInput(cargoLevel) === "Empty") {
         alert ("All fields are required!");
 
@@ -36,7 +42,7 @@ copilotStatus.innerHTML = `Co-pilot ${copilot} is ready for launch`;
 if (fuelLevel < 10000) {
     faultyItems.style.visibility = "visible";
     launchStatus.innerHTML = "Shuttle not ready for launch";
-    launchStatus.style.color = "red";
+    launchStatus.style.color = "#C7254E";
     pilotStatus.innerHTML = "Pilot not ready";
     copilotStatus.innerHTML = "Co-pilot not ready";
 }
@@ -48,7 +54,7 @@ if (cargoLevel > 10000) {
     copilotStatus.innerHTML = "Co-pilot ready";
 }
 if (fuelLevel >= 10000 && cargoLevel <= 10000) {
-    faultyItems.style.visibility = "hidden";
+    faultyItems.style.visibility = "visible";
     launchStatus.innerHTML = "Shuttle is ready for launch";
     launchStatus.style.color = "#419F6A";
 }
