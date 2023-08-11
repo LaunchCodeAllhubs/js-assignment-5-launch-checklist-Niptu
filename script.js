@@ -14,7 +14,7 @@ window.addEventListener("load", function() {
     let pilotStatus = document.getElementById("pilotStatus");
     let copilotStatus = document.getElementById("copilotStatus");
     let faultyItems = document.getElementById("faultyItems");
-    let launchStatus = this.document.getElementById("launchStatus");
+    let launchStatus = document.getElementById("launchStatus");
 
     //add eventListener to the form botton
     form.addEventListener ("submit",function(event) {
